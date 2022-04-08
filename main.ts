@@ -1,6 +1,10 @@
-import settings from "./.vscode/settings.json" assert { type: "json" };
-
-const configuration = await import("./deno.json", { assert: { type: "json" } });
-
-console.log(settings["deno.enable"]);
-console.log(configuration);
+const obj = {
+  name: "haha",
+  age: 23,
+  items: ["a", "b", "c"],
+  toJSON: function () {
+    return "seriailized";
+  },
+};
+const txt = JSON.stringify(obj);
+console.log(txt);
