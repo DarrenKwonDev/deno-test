@@ -1,5 +1,3 @@
-import { VERSION } from "https://deno.land/std/version.ts";
-import * as U from "./utils.ts";
+import settings from "./.vscode/settings.json" assert { type: "json" };
 
-U.sayHello(U.baz);
-console.log(VERSION);
+console.log(settings["deno.enable"]);
