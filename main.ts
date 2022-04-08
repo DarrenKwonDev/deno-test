@@ -1,7 +1,9 @@
-import { copy } from "https://deno.land/std@0.134.0/streams/conversion.ts";
-const filenames = Deno.args;
-for (const filename of filenames) {
-  const file = await Deno.open(filename);
-  await copy(file, Deno.stdout);
-  file.close();
-}
+console.log("%cHello World", "color: red");
+console.log("%cHello World", "background-color: blue");
+console.log("%cHello World", "text-decoration: underline");
+console.log("%cHello World", "text-decoration: line-through");
+console.log("%cHello World", "font-weight: bold");
+console.log("%cHello World", "color: red; font-weight: bold");
+console.log("%cHello %cWorld", "color: red", "color: blue");
+console.log("%cHello World", "color: #FFC0CB");
+console.log("%cHello World", "color: rgb(255, 192, 203)");
