@@ -1,15 +1,16 @@
-import { parse } from "https://deno.land/std@0.119.0/flags/mod.ts";
+import { serve } from "https://deno.land/std@0.119.0/http/server.ts";
 
-console.log("Deno.args", Deno.args);
+const BOOK_ROUTE = new URLPattern({ pathname: "/books/:id" });
 
-const flags = parse(Deno.args, {
-  boolean: ["help", "color"],
-  string: ["version"],
-  default: { color: true },
-});
-
-console.log("Wants help?", flags.help);
-console.log("Version:", flags.version);
-console.log("Wants color?:", flags.color);
-
-console.log("Other:", flags._); // [ "Deno", "Sushi" ]
+function handler(req: Request): Response {
+  const match = BOOK_ROUTE.exec(req.url);
+  if (match) {
+    const id = match.pathname.groups.id;
+    return new Response(`Book ${id}`);
+  }
+  return new Response("Not found (try /books/1)", {
+    status: 404,
+  });
+}
+console.log("Listening on http://localhost:8000");
+serve(handler);
