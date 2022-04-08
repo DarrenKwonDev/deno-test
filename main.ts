@@ -1,4 +1,5 @@
-console.log("Current Deno version", Deno.version.deno);
-console.log("Current TypeScript version", Deno.version.typescript);
-console.log("Current V8 version", Deno.version.v8);
-console.log("Deno.version", Deno.version);
+console.log(Deno.env.get("PORT")); // undefined
+Deno.env.set("my_secret", "I have a secret");
+
+console.log(Deno.env.get("my_secret"));
+console.log(Deno.env.toObject()); // get all env
